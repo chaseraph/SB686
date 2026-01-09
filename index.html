@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annotated Bill: SB686 (Placeholder)</title>
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for that "Document" feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* --- CUSTOM TYPOGRAPHY & LAYOUT --- */
+        body {
+            background-color: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .document-container {
+            font-family: 'Merriweather', serif; /* Looks like a PDF/Paper */
+            color: #2d3748;
+            line-height: 1.8;
+        }
+
+        /* The Highlight Style */
+        .highlight {
+            background-color: rgba(255, 224, 102, 0.6); /* Soft Yellow */
+            border-bottom: 2px solid #eebb00;
+            padding: 0 4px;
+            border-radius: 2px;
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .highlight:hover {
+            background-color: rgba(255, 224, 102, 1);
+        }
+
+        /* --- THE ANNOTATION NOTE LOGIC --- */
+        
+        .annotation {
+            font-family: 'Inter', sans-serif; /* Clean font for notes */
+            font-size: 0.9rem;
+            line-height: 1.5;
+            background-color: #ffffff;
+            border-left: 4px solid #3b82f6; /* Blue accent */
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 0 4px 4px 0;
+            color: #4a5568;
+        }
+
+        /* DESKTOP LAYOUT (The "Magic" part) 
+           We use :not(.simulate-mobile) so we can force mobile view with JS 
+        */
+        @media (min-width: 1024px) {
+            body:not(.simulate-mobile) .content-wrapper {
+                display: grid;
+                grid-template-columns: 1fr 350px; /* Text Column | Margin Column */
+                gap: 4rem;
+                max-width: 1100px;
+                margin: 0 auto;
+                position: relative;
+            }
+
+            body:not(.simulate-mobile) article p {
+                position: relative; /* Anchors the absolute note */
+            }
+
+            body:not(.simulate-mobile) .annotation {
+                position: absolute;
+                right: -420px; /* Push into the margin */
+                width: 320px;  /* Fixed width for the note */
+                top: 0;        /* Align with top of the paragraph */
+                margin-top: 0;
+                background-color: white;
+                border: 1px solid #e2e8f0;
+                border-left: 4px solid #3b82f6;
+            }
+            
+            /* Connector line on hover */
+            body:not(.simulate-mobile) .highlight:hover::after {
+                content: '';
+                position: absolute;
+                left: 100%;
+                top: 50%;
+                width: 100px; /* Reach towards the note */
+                height: 1px;
+                background: #cbd5e0;
+                z-index: -1;
+            }
+        }
+
+        /* --- SIMULATION STYLES (For Preview Purpose Only) --- */
+        body.simulate-mobile {
+            max-width: 375px; /* iPhone SE / Standard width */
+            margin: 40px auto;
+            border: 12px solid #333;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            overflow-x: hidden;
+            background-color: #fff;
+            height: 80vh;
+            overflow-y: scroll;
+        }
+
+        /* Hide the scrollbar in simulation for cleanliness */
+        body.simulate-mobile::-webkit-scrollbar {
+            width: 0px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV / HEADER -->
+    <nav class="bg-slate-900 text-white py-4 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="font-sans font-bold text-lg tracking-wide flex items-center gap-2">
+                <i data-lucide="file-text" class="w-5 h-5 text-blue-400"></i>
+                <span><span class="text-blue-400">DOC</span>REVEAL</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <!-- Mobile Simulator Button -->
+                <button onclick="toggleMobile()" class="flex items-center gap-2 text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded border border-slate-700 transition" title="Toggle Mobile View">
+                    <i data-lucide="smartphone" class="w-4 h-4"></i>
+                    <span id="sim-text" class="hidden sm:inline">Mobile Preview</span>
+                </button>
+
+                <a href="#" class="text-xs bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-md transition font-sans font-medium flex items-center gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Original PDF</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="py-12 px-6">
+        
+        <div class="max-w-3xl mx-auto mb-12 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 font-sans mb-4">Annotated Bill: SB686 (Placeholder)</h1>
+            <p class="text-slate-500 font-sans text-lg">
+                Annotated by <strong class="text-slate-800">Sarah Jenkins</strong>, Chief Editor.
+            </p>
+            <p class="text-sm text-slate-400 mt-2 font-sans italic">
+                <span class="hidden lg:inline">Hover over highlights to see connections.</span>
+                <span class="lg:hidden">Scroll to read notes inline.</span>
+            </p>
+        </div>
+
+        <div class="content-wrapper">
+            
+            <!-- THE DOCUMENT TEXT -->
+            <article class="document-container text-lg">
+                
+                <!-- SECTION 1 -->
+                <h2 class="text-xl md:text-2xl font-bold text-slate-900 mb-6 font-sans border-b pb-2">1.0 Executive Summary</h2>
+                
+                <p class="mb-8">
+                    The Department of Public Works submitted the annual budget review on January 15, 2024. 
+                    While the majority of funds were allocated to standard maintenance, 
+                    <span class="highlight">approximately $2.4 million remains unaccounted for in the 'Miscellaneous Contracting' ledger.</span>
+                    
+                    <!-- THE NOTE (Must follow the highlight immediately) -->
+                    <span class="annotation block">
+                        <strong class="text-blue-600 uppercase text-xs tracking-wider block mb-2 flex items-center gap-1">
+                            <i data-lucide="edit-3" class="w-3 h-3"></i> Editor's Note
+                        </strong>
+                        This is the core issue. The "Miscellaneous" category usually caps at $50k. A $2.4m entry is unprecedented and triggered this entire audit.
+                    </span>
+                </p>
+
+                <p class="mb-8">
+                    The committee reviewed vendor receipts from Q3 and Q4. 
+                    It was noted that the selection process for the River-Walk project was expedited, 
+                    <span class="highlight">bypassing the standard 30-day public bidding window due to "emergency circumstances."</span>
+                    
+                    <span class="annotation block">
+                        <strong class="text-red-600 uppercase text-xs tracking-wider block mb-2 flex items-center gap-1">
+                            <i data-lucide="flag" class="w-3 h-3"></i> Legal Flag
+                        </strong>
+                        State Law (ORS 279C) defines "emergency" strictly as immediate threats to public safety. There was no flooding or structural failure recorded during this period to justify bypassing the bid.
+                    </span>
+                </p>
+
+                <!-- SECTION 2 -->
+                <h2 class="text-xl md:text-2xl font-bold text-slate-900 mb-6 font-sans border-b pb-2 mt-12">2.0 Vendor Relationships</h2>
+
+                <p class="mb-8">
+                    Analysis of the winning contractors reveals a pattern of consolidation.
+                    Three primary firms were awarded 85% of all municipal contracts. 
+                    <span class="highlight">Two of these firms share a registered business address with a current member of the oversight board.</span>
+                    
+                    <span class="annotation block">
+                        <strong class="text-blue-600 uppercase text-xs tracking-wider block mb-2 flex items-center gap-1">
+                            <i data-lucide="search" class="w-3 h-3"></i> Key Finding
+                        </strong>
+                        This is a clear conflict of interest. We have verified this address via public tax records. The board member did not recuse themselves from the voting process.
+                    </span>
+                </p>
+
+                <p class="mb-8">
+                    When interviewed, the board member stated that the address match was a clerical error and that they had divested from the company in 2022. 
+                    However, <span class="highlight">dividends were paid to their personal account as recently as last month.</span>
+
+                    <span class="annotation block">
+                        <strong class="text-blue-600 uppercase text-xs tracking-wider block mb-2 flex items-center gap-1">
+                            <i data-lucide="info" class="w-3 h-3"></i> Update
+                        </strong>
+                        We obtained bank records (see Appendix B) that contradict the board member's testimony.
+                    </span>
+                </p>
+
+                <p class="mb-8 text-slate-400 italic border-l-4 border-slate-200 pl-4 text-base">
+                    [End of excerpt. The full PDF contains 45 additional pages of financial tables.]
+                </p>
+
+            </article>
+
+            <!-- EMPTY DIV FOR GRID BALANCE (Desktop only) -->
+            <div class="hidden lg:block"></div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-100 py-12 border-t mt-12">
+        <div class="max-w-4xl mx-auto text-center font-sans text-slate-500">
+            <p class="mb-2">&copy; 2024 The Daily Investigation.</p>
+            <p class="text-sm">Built with HTML & CSS. <a href="#" class="text-blue-600 underline">View Source</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Simple Mobile Simulator Logic
+        function toggleMobile() {
+            const body = document.body;
+            const btnText = document.getElementById('sim-text');
+            
+            body.classList.toggle('simulate-mobile');
+            
+            if (body.classList.contains('simulate-mobile')) {
+                btnText.textContent = "Exit Mobile View";
+            } else {
+                btnText.textContent = "Mobile Preview";
+            }
+        }
+    </script>
+
+</body>
+</html>
