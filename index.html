@@ -54,11 +54,9 @@
             color: #4a5568;
         }
 
-        /* DESKTOP LAYOUT (The "Magic" part) 
-           We use :not(.simulate-mobile) so we can force mobile view with JS 
-        */
+        /* DESKTOP LAYOUT (The "Magic" part) */
         @media (min-width: 1024px) {
-            body:not(.simulate-mobile) .content-wrapper {
+            .content-wrapper {
                 display: grid;
                 grid-template-columns: 1fr 350px; /* Text Column | Margin Column */
                 gap: 4rem;
@@ -67,11 +65,11 @@
                 position: relative;
             }
 
-            body:not(.simulate-mobile) article p {
+            article p {
                 position: relative; /* Anchors the absolute note */
             }
 
-            body:not(.simulate-mobile) .annotation {
+            .annotation {
                 position: absolute;
                 right: -420px; /* Push into the margin */
                 width: 320px;  /* Fixed width for the note */
@@ -83,7 +81,7 @@
             }
             
             /* Connector line on hover */
-            body:not(.simulate-mobile) .highlight:hover::after {
+            .highlight:hover::after {
                 content: '';
                 position: absolute;
                 left: 100%;
@@ -94,24 +92,6 @@
                 z-index: -1;
             }
         }
-
-        /* --- SIMULATION STYLES (For Preview Purpose Only) --- */
-        body.simulate-mobile {
-            max-width: 375px; /* iPhone SE / Standard width */
-            margin: 40px auto;
-            border: 12px solid #333;
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            overflow-x: hidden;
-            background-color: #fff;
-            height: 80vh;
-            overflow-y: scroll;
-        }
-
-        /* Hide the scrollbar in simulation for cleanliness */
-        body.simulate-mobile::-webkit-scrollbar {
-            width: 0px;
-        }
     </style>
 </head>
 <body>
@@ -121,19 +101,13 @@
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
             <div class="font-sans font-bold text-lg tracking-wide flex items-center gap-2">
                 <i data-lucide="file-text" class="w-5 h-5 text-blue-400"></i>
-                <span><span class="text-blue-400">DOC</span>REVEAL</span>
+                <span>Chas Hundley</span>
             </div>
             
             <div class="flex items-center gap-3">
-                <!-- Mobile Simulator Button -->
-                <button onclick="toggleMobile()" class="flex items-center gap-2 text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded border border-slate-700 transition" title="Toggle Mobile View">
-                    <i data-lucide="smartphone" class="w-4 h-4"></i>
-                    <span id="sim-text" class="hidden sm:inline">Mobile Preview</span>
-                </button>
-
-                <a href="#" class="text-xs bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-md transition font-sans font-medium flex items-center gap-2">
+                <a href="SB686B-Engrossed.pdf" class="text-xs bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-md transition font-sans font-medium flex items-center gap-2">
                     <i data-lucide="download" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">Original PDF</span>
+                    <span class="hidden sm:inline">2025 SB686 B-Engrossed</span>
                 </a>
             </div>
         </div>
@@ -143,11 +117,46 @@
     <main class="py-12 px-6">
         
         <div class="max-w-3xl mx-auto mb-12 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 font-sans mb-4">Annotated Bill: SB686 (Placeholder)</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 font-sans mb-4">My concerns and annotations for SB686</h1>
             <p class="text-slate-500 font-sans text-lg">
-                Annotated by <strong class="text-slate-800">Sarah Jenkins</strong>, Chief Editor.
+                Annotated and written by <strong class="text-slate-800">Chas Hundley, journalist & publisher</strong>
             </p>
-            <p class="text-sm text-slate-400 mt-2 font-sans italic">
+
+            <!-- INTRODUCTORY TEXT -->
+            <div class="mt-8 mb-12 text-left space-y-6 font-sans text-slate-700 text-lg leading-relaxed">
+                <p>
+                    The concept of forcing massive tech companies who, in my view, are taking journalism content and using it in a way that amounts to theft is serious and I applaud Oregon legislators for trying to address that while providing funding for our local media ecosystem.
+                </p>
+                <p>
+                    Last year's bill, SB 686, which I understand will be resurrected for the 2026 short session, is not the way to do it.
+                </p>
+                <p>
+                    In their zeal, I fear legislators will end up doing incredible, irreversible harm to Oregon's growing independent journalism industry while enriching out-of-state corporations and reducing the content and quality of journalism in communities covered by tiny independent newspapers like mine.
+                </p>
+                <p class="font-bold text-slate-900 border-l-4 border-red-500 pl-4 bg-red-50 p-4 rounded-r">
+                    The bill as written leaves small, locally-owned outfits scrambling for a tiny pot of funds that they must ask for in grant form in competition with non-journalism organizations asking for the same funding, which is very difficult for solo newsrooms to do due to staff and time constraints, while large chain corporations from out-of-state get to subsidize their journalists with easily accessed cash payments
+                </p>
+                <p>
+                    I and my indie collogues are committed to finding new and exciting ways to found our robust journalism, like events, classes, and philanthropy, to name just a few. This bill would enrich our large out-of-state competitors, who would use their sudden influx of cash, if it ever materializes, to crush us with a regional model that focuses on only providing news in the largest communities while siphoning up ad dollars and subscribers in the overlooked communities we focus on.
+                </p>
+                <p>
+                    The bill runs the risk that Meta and Google will simply ban news links as they have threatened, or in Canada's case, followed through on.
+                </p>
+                <p>
+                    Google tested <a href="https://www.cnbc.com/2024/04/12/google-removing-links-to-california-news-websites-after-state-bill-.html" target="_blank" class="text-blue-600 underline hover:text-blue-800">shutting off link traffic</a> in California when similar legislation was proposed, and Meta/Facebook still <a href="https://www.cbc.ca/news/politics/one-year-after-news-ban-canadian-journalism-is-suffering-but-meta-isn-t-budging-1.7281101" target="_blank" class="text-blue-600 underline hover:text-blue-800">does not allow</a> news links on their sites in Canada because of their bargaining code law, the Online News Act.
+                </p>
+                <p>
+                    Like it or not, Meta and Google drive a huge amount of traffic to our largely digital newspaper. We will close if Meta or Google ban news links.
+                </p>
+                <p>
+                    This bill should not have been introduced last year without input from small publications. Now, legislators are considering trying to ram it through in a 35 day session, giving folks like me very little time to see what's in the bill and respond.
+                </p>
+                <p>
+                    I have gone through last year's bill and highlighted just a few concerning sections; they are not all of them, but they stand out.
+                </p>
+            </div>
+
+            <p class="text-sm text-slate-400 mt-2 font-sans italic border-t pt-4">
                 <span class="hidden lg:inline">Hover over highlights to see connections.</span>
                 <span class="lg:hidden">Scroll to read notes inline.</span>
             </p>
@@ -330,20 +339,6 @@
     <script>
         // Initialize Icons
         lucide.createIcons();
-
-        // Simple Mobile Simulator Logic
-        function toggleMobile() {
-            const body = document.body;
-            const btnText = document.getElementById('sim-text');
-            
-            body.classList.toggle('simulate-mobile');
-            
-            if (body.classList.contains('simulate-mobile')) {
-                btnText.textContent = "Exit Mobile View";
-            } else {
-                btnText.textContent = "Mobile Preview";
-            }
-        }
     </script>
 
 </body>
