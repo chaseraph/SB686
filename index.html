@@ -12,22 +12,60 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
+        /* --- CSS CUSTOM PROPERTIES FOR THEMING --- */
+        :root {
+            /* Light mode colors (default) */
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-nav: #0f172a;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-nav: #ffffff;
+            --border-color: #e2e8f0;
+            --border-accent: #cbd5e0;
+            --highlight-bg: rgba(255, 224, 102, 0.6);
+            --highlight-bg-hover: rgba(255, 224, 102, 1);
+            --highlight-border: #eebb00;
+            --accent-blue: #3b82f6;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark mode colors */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a202c;
+                --bg-secondary: #2d3748;
+                --bg-nav: #0f172a;
+                --text-primary: #e2e8f0;
+                --text-secondary: #cbd5e0;
+                --text-nav: #ffffff;
+                --border-color: #4a5568;
+                --border-accent: #718096;
+                --highlight-bg: rgba(255, 224, 102, 0.3);
+                --highlight-bg-hover: rgba(255, 224, 102, 0.5);
+                --highlight-border: #d4a017;
+                --accent-blue: #60a5fa;
+                --shadow-color: rgba(0, 0, 0, 0.4);
+            }
+        }
+
         /* --- CUSTOM TYPOGRAPHY & LAYOUT --- */
         body {
-            background-color: #f8f9fa;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             transition: all 0.3s ease;
         }
 
         .document-container {
             font-family: 'Merriweather', serif; /* Looks like a PDF/Paper */
-            color: #2d3748;
+            color: var(--text-primary);
             line-height: 1.8;
         }
 
         /* The Highlight Style */
         .highlight {
-            background-color: rgba(255, 224, 102, 0.6); /* Soft Yellow */
-            border-bottom: 2px solid #eebb00;
+            background-color: var(--highlight-bg);
+            border-bottom: 2px solid var(--highlight-border);
             padding: 0 4px;
             border-radius: 2px;
             transition: background 0.2s ease;
@@ -35,23 +73,23 @@
         }
 
         .highlight:hover {
-            background-color: rgba(255, 224, 102, 1);
+            background-color: var(--highlight-bg-hover);
         }
 
         /* --- THE ANNOTATION NOTE LOGIC --- */
-        
+
         .annotation {
             font-family: 'Inter', sans-serif; /* Clean font for notes */
             font-size: 0.9rem;
             line-height: 1.5;
-            background-color: #ffffff;
-            border-left: 4px solid #3b82f6; /* Blue accent */
+            background-color: var(--bg-secondary);
+            border-left: 4px solid var(--accent-blue);
             padding: 1rem;
             margin-top: 1rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px var(--shadow-color);
             border-radius: 0 4px 4px 0;
-            color: #4a5568;
+            color: var(--text-secondary);
         }
 
         /* DESKTOP LAYOUT (The "Magic" part) */
@@ -75,11 +113,11 @@
                 width: 320px;  /* Fixed width for the note */
                 top: 0;        /* Align with top of the paragraph */
                 margin-top: 0;
-                background-color: white;
-                border: 1px solid #e2e8f0;
-                border-left: 4px solid #3b82f6;
+                background-color: var(--bg-secondary);
+                border: 1px solid var(--border-color);
+                border-left: 4px solid var(--accent-blue);
             }
-            
+
             /* Connector line on hover */
             .highlight:hover::after {
                 content: '';
@@ -88,8 +126,51 @@
                 top: 50%;
                 width: 100px; /* Reach towards the note */
                 height: 1px;
-                background: #cbd5e0;
+                background: var(--border-accent);
                 z-index: -1;
+            }
+        }
+
+        /* Dark mode overrides for Tailwind classes */
+        @media (prefers-color-scheme: dark) {
+            .text-slate-800, .text-slate-900 {
+                color: var(--text-primary) !important;
+            }
+
+            .text-slate-500, .text-slate-700 {
+                color: var(--text-secondary) !important;
+            }
+
+            .text-slate-400 {
+                color: #94a3b8 !important;
+            }
+
+            .bg-slate-100 {
+                background-color: #2d3748 !important;
+            }
+
+            .border-t, .border-b {
+                border-color: var(--border-color) !important;
+            }
+
+            .border-l-4 {
+                border-left-color: var(--border-color) !important;
+            }
+
+            .bg-red-50 {
+                background-color: rgba(220, 38, 38, 0.1) !important;
+            }
+
+            .border-red-500 {
+                border-color: #ef4444 !important;
+            }
+
+            .text-blue-600 {
+                color: var(--accent-blue) !important;
+            }
+
+            .hover\:text-blue-600:hover, .hover\:text-blue-800:hover {
+                color: var(--accent-blue) !important;
             }
         }
     </style>
